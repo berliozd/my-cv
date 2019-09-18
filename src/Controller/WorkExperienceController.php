@@ -11,16 +11,6 @@ use Symfony\Component\HttpFoundation\Response;
 
 class WorkExperienceController extends AbstractController
 {
-    /**
-     * @Route("/work/experience", name="work_experience")
-     */
-    public function index()
-    {
-        return $this->render('work_experience/index.html.twig', [
-            'controller_name' => 'WorkExperienceController',
-        ]);
-    }
-
     private $workExperiences = [
         [
             'context' => 'Freelancing - Addeos (Client : PROXISERVE)',
@@ -127,7 +117,7 @@ class WorkExperienceController extends AbstractController
             $workExperience->setContext($workExperienceData['context']);
             $workExperience->setStartDate(new DateTime($workExperienceData['start_date']));
             if (isset($workExperienceData['end_date'])) {
-                $workExperience->setStartDate(new DateTime($workExperienceData['end_date']));
+                $workExperience->setEndDate(new DateTime($workExperienceData['end_date']));
             }
             $workExperience->setTitle($workExperienceData['title']);
 
