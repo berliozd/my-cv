@@ -1,0 +1,54 @@
+{# templates/cv/content.html.twig #}
+
+<style>
+ul {
+    padding : 0;
+    margin: 0;
+}
+li.experience, li.experience__detail {
+    list-style : none;
+    padding: 0;
+}
+.experience {
+    margin : 10px 10px 20px 10px;
+}
+.experience__context {
+    border-top : 1px black solid;
+    border-bottom : 1px black solid;
+}
+.experience__dates {
+    color: grey;
+}
+.experience__title {
+    font-style: italic;
+    font-weight: bold;
+}
+.experience__detail {
+    padding-left: 10px;
+    margin-bottom: 10px;
+}
+.experience__detail__technical span {
+    text-decoration: underline;
+}
+.experience__detail__detail ul {
+    margin-left:20px;
+}
+</style>
+
+<ul>
+{% for workExperience in workExperiences %}
+<li class="experience">
+<div class="experience__context">{{ workExperience.context }}</div>
+<div class="experience__dates">{{ workExperience.startDate|date('M Y', 'Europe/Paris') }} à {{ workExperience.endDate|date('M Y', 'Europe/Paris') }}</div>
+<div class="experience__title">{{ workExperience.title }}</div>
+<ul>
+{% for workExperienceDetail in workExperience.workExperienceDetails %}
+<li class="experience__detail">
+<div class="experience__detail__detail">{{ workExperienceDetail.detail | raw }}</div>
+<div class="experience__detail__technical"><span>Environnement technique : </span>{{ workExperienceDetail.technicalEnvironment }}</div>
+</li>
+{% endfor %}
+</ul>
+</li>
+{% endfor %}
+</ul>
